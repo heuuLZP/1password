@@ -1,0 +1,248 @@
+/* PasswordEntry组件样式 */
+
+.card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  
+  &:hover {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+}
+
+/* 在模态框中的卡片样式 */
+:global(.password-modal) .card {
+  box-shadow: none;
+  margin-bottom: 0;
+  
+  &:hover {
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 头部区域 */
+.headerSection {
+  display: flex;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.websiteAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.websiteInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.titleUrlRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.urlDisplay {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  margin-left: 12px;
+  white-space: nowrap;
+}
+
+.urlButton {
+  padding: 0 4px;
+}
+
+/* 凭据区域 */
+.credentialsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.credentialItem {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  background-color: #fafafa;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.credLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.credValue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  span {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  button {
+    color: #6b7280;
+    
+    &:hover {
+      color: var(--primary-color);
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+}
+
+/* 备注区域 */
+.notesSection {
+  padding: 8px 12px;
+  background-color: #fafafa;
+  border-radius: 6px;
+  
+  :global(.ant-typography) {
+    font-size: 14px;
+  }
+}
+
+.notesTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+/* 底部区域 */
+.footerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.metaInfo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #9ca3af;
+  text-align: right;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 4px;
+  
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* 编辑表单相关样式 */
+.editTitle {
+  color: var(--primary-color);
+  margin-right: 8px;
+}
+
+.editForm {
+  padding: 8px 0;
+}
+
+/* 在模态框中的表单样式 */
+:global(.password-modal) .editForm {
+  padding: 0;
+  
+  :global(.ant-form-item) {
+    margin-bottom: 16px;
+  }
+  
+  :global(.ant-form-item-label) {
+    min-width: 100px;
+    text-align: right;
+    padding-right: 12px;
+  }
+  
+  :global(.ant-form-item-row) {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  
+  :global(.ant-form-item-control) {
+    flex: 1;
+  }
+  
+  :global(.ant-form-item-explain) {
+    margin-top: 4px;
+  }
+}
+
+.passwordInputGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.passwordInput {
+  flex: 1;
+}
+
+.generatePasswordBtn {
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .titleUrlRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .urlDisplay {
+    margin-left: 0;
+    margin-top: 4px;
+  }
+  
+  .passwordInputGroup {
+    flex-direction: column;
+  }
+  
+  .generatePasswordBtn {
+    width: 100%;
+  }
+}
+
+.groupTag {
+  margin-top: 12px;
+  margin-bottom: 8px;
+} 

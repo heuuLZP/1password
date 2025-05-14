@@ -1,0 +1,205 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.headerTitle {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.cardsRow {
+  margin-bottom: 24px;
+}
+
+.exportCard {
+  height: 100%;
+  transition: all 0.3s;
+  border-radius: 8px!important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(79, 70, 229, 0.3);
+  position: relative;
+  
+  &:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.importCard {
+  height: 100%;
+  transition: all 0.3s;
+  border-radius: 8px!important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  position: relative;
+  
+  &:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  min-height: 180px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+
+
+.cardTitle {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.cardDescription {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.warningBox {
+  display: flex;
+  align-items: center;
+  background-color: #FEF3C7;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid #FED7AA;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.warningIcon {
+  color: #d97706;
+  font-size: 18px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.warningText {
+  color: #b45309;
+  margin: 0;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.buttonWrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.exportButton {
+  background: linear-gradient(to right, #4f46e5, #3b82f6);
+  border-color: #4f46e5;
+  box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+  
+  &:hover {
+    background: linear-gradient(to right, #4338ca, #3b82f6);
+    border-color: #4338ca;
+  }
+}
+
+.importButton {
+  background: linear-gradient(to right, #d97706, #ea580c);
+  border-color: #d97706;
+  box-shadow: 0 4px 6px rgba(217, 119, 6, 0.2);
+  
+  &:hover {
+    background: linear-gradient(to right, #b45309, #c2410c);
+    border-color: #b45309;
+  }
+}
+
+.alertWrapper {
+  margin-bottom: 24px;
+}
+
+.alert {
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.tipsCard {
+  background: linear-gradient(to right, #f8fafc, #f1f5f9);
+  border-radius: 8px!important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.tipsContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.tipsTitleRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.tipsIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #e2e8f0;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.tipsIcon {
+  color: #475569;
+}
+
+.tipsTitle {
+  font-size: 16px;
+  margin: 0;
+  line-height: 32px;
+}
+
+.tipsList {
+  padding-left: 0;
+  list-style-type: disc;
+  margin: 0;
+  margin-left: 44px;
+  color: #64748b;
+  
+  li {
+    margin-bottom: 8px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.tipsItem {
+  font-size: 14px;
+} 

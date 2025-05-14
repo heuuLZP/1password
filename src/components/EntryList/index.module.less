@@ -1,0 +1,96 @@
+/* EntryList组件样式 */
+
+.container {
+  width: 100%;
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+}
+
+.counter {
+  margin-left: 8px;
+}
+
+.searchContainer {
+  margin-bottom: 16px;
+}
+
+.entryList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.entryItem {
+  transition: transform 0.2s;
+  
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.emptyText {
+  margin-top: 1rem;
+}
+
+.strongText {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.newEntryContainer {
+  margin-bottom: 24px;
+}
+
+.newEntryWrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newEntryContent {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.groupTabs {
+  margin-bottom: 16px;
+  
+  :global(.ant-tabs-nav) {
+    margin-bottom: 16px;
+  }
+}
+
+.tabsActions {
+  display: flex;
+  align-items: center;
+}
+
+.tabColorDot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* 模态框内的样式 */
+:global(.password-modal) {
+  .entryForm {
+    max-width: 100%;
+  }
+} 
