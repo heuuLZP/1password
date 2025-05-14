@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Input, Button, Typography, Empty, Space, Modal, Select, Tabs } from 'antd';
+import { Input, Button, Typography, Empty, Space, Modal, Tabs } from 'antd';
 import { PlusOutlined, SearchOutlined, ExclamationCircleOutlined, TagOutlined } from '@ant-design/icons';
-import { PasswordEntry, PasswordVault, PasswordGroup } from '../../lib/types';
+import { PasswordEntry, PasswordVault } from '../../lib/types';
 import PasswordEntryComponent from '../PasswordEntry/index';
 import { StorageManager } from '../../lib/storage';
 import styles from './index.module.less';
@@ -9,7 +9,6 @@ import styles from './index.module.less';
 const { Title, Text } = Typography;
 const { Search } = Input;
 const { confirm } = Modal;
-const { Option } = Select;
 const { TabPane } = Tabs;
 
 interface EntryListProps {
@@ -148,15 +147,15 @@ const EntryList: React.FC<EntryListProps> = ({ vault, onVaultChange }) => {
     return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
   });
   
-  // 清除搜索
-  const handleClearSearch = () => {
-    setSearchTerm('');
-  };
+  // // 清除搜索
+  // const handleClearSearch = () => {
+  //   setSearchTerm('');
+  // };
   
-  // 根据分组ID获取分组信息
-  const getGroupById = (groupId: string): PasswordGroup | undefined => {
-    return vault.groups.find(group => group.id === groupId);
-  };
+  // // 根据分组ID获取分组信息
+  // const getGroupById = (groupId: string): PasswordGroup | undefined => {
+  //   return vault.groups.find(group => group.id === groupId);
+  // };
   
   // 渲染分组筛选选项
   const renderGroupTabs = () => {

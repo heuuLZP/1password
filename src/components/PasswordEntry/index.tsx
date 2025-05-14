@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Input, Form, Typography, Space, Tooltip, Divider, message, Select, Tag } from 'antd';
+import { Card, Button, Input, Form, Typography, Space, Tooltip, message, Select, Tag } from 'antd';
 import { EditOutlined, DeleteOutlined, EyeOutlined, EyeInvisibleOutlined, CopyOutlined, LinkOutlined, SaveOutlined, CloseOutlined, ReloadOutlined, GlobalOutlined, UserOutlined, KeyOutlined, ClockCircleOutlined, CommentOutlined, TagOutlined } from '@ant-design/icons';
 import { PasswordEntry as PasswordEntryType, PasswordGroup } from '../../lib/types';
 import { StorageManager } from '../../lib/storage';
@@ -7,7 +7,6 @@ import { generateStrongPassword } from '../../lib/password-strength';
 import styles from './index.module.less';
 
 const { Text, Title, Paragraph } = Typography;
-const { TextArea } = Input;
 const { Option } = Select;
 
 interface PasswordEntryProps {

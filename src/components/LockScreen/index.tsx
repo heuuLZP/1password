@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Typography, Space, Card, Divider, Badge, Avatar } from 'antd';
+import { Layout, Typography, Card, Divider, Badge, Avatar } from 'antd';
 import { LockOutlined, SafetyOutlined } from '@ant-design/icons';
 import MasterPasswordForm from '../MasterPasswordForm';
 import styles from './index.module.less';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, Progress, Alert, Typography, Space, Divider } from 'antd';
+import { Form, Input, Button, Progress, Alert, Typography, Space } from 'antd';
 import { LockOutlined, KeyOutlined, SafetyOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { checkPasswordStrength } from '../../lib/password-strength';
 import { MasterPasswordFormState } from '../../lib/types';
@@ -42,7 +42,7 @@ const MasterPasswordForm: React.FC<MasterPasswordFormProps> = ({ isNewUser, onSu
     setState(prev => ({ ...prev, confirmPassword: value, error: undefined }));
   };
   
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async () => {
     // 表单验证已由 Ant Design Form 处理
     
     // 检查密码强度（仅新用户）

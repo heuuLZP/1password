@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import LockScreen from './components/LockScreen';
 import Dashboard from './components/Dashboard';
 import { AppState, PasswordVault } from './lib/types';
