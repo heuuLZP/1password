@@ -128,7 +128,7 @@ function App() {
   };
   
   // 处理导入
-  const handleImport = async (encryptedDataStr: string) => {
+  const handleImport = async (encryptedDataStr: string): Promise<boolean> => {
     try {
       if (!state.masterPassword) {
         throw new Error('未提供主密码');
@@ -165,9 +165,11 @@ function App() {
         vault,
         encryptedData: cleanEncryptedData
       }));
+      
+      return true; // 导入成功返回true
     } catch (error) {
       console.error('导入数据时出错:', error);
-      throw error;
+      return false; // 导入失败返回false
     }
   };
   

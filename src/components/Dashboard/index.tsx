@@ -20,7 +20,7 @@ interface DashboardProps {
   vault: PasswordVault;
   encryptedData: string;
   onVaultChange: (updatedVault: PasswordVault) => void;
-  onImport: (encryptedDataStr: string) => Promise<void>;
+  onImport: (encryptedDataStr: string) => Promise<boolean>;
   onLock: () => void;
 }
 
