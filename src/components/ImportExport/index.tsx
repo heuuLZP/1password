@@ -9,7 +9,7 @@ const { TextArea } = Input;
 
 interface ImportExportProps {
   encryptedData: string;
-  onImport: (encryptedData: string) => void;
+  onImport: (encryptedData: string) => Promise<boolean>;
 }
 
 const ImportExport: React.FC<ImportExportProps> = ({ encryptedData, onImport }) => {
@@ -106,16 +106,22 @@ const ImportExport: React.FC<ImportExportProps> = ({ encryptedData, onImport }) 
         throw new Error('导入的文件不是有效的密码库文件');
       }
       
-      onImport(fileContent);
-      setSuccess('密码库已成功导入');
-      message.success('密码库已成功导入');
+      // 尝试导入并验证是否能用当前主密码解密
+      const importSuccess = await onImport(fileContent);
+      
+      if (importSuccess) {
+        setSuccess('密码库已成功导入');
+        message.success('密码库已成功导入');
+      } else {
+        throw new Error('导入失败，主密码与导入数据不匹配');
+      }
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
         message.error(err.message);
       } else {
-        setError('导入失败，请确保文件格式正确');
-        message.error('导入失败，请确保文件格式正确');
+        setError('导入失败，请确保文件格式正确且与当前主密码匹配');
+        message.error('导入失败，请确保文件格式正确且与当前主密码匹配');
       }
       console.error('导入错误:', err);
     } finally {
@@ -136,7 +142,7 @@ const ImportExport: React.FC<ImportExportProps> = ({ encryptedData, onImport }) 
   };
   
   // 处理文本导入
-  const handleTextImport = () => {
+  const handleTextImport = async () => {
     setIsImporting(true);
     setError(null);
     setSuccess(null);
@@ -156,17 +162,23 @@ const ImportExport: React.FC<ImportExportProps> = ({ encryptedData, onImport }) 
         throw new Error('导入的文本不是有效的密码库数据');
       }
       
-      onImport(importText);
-      setTextImportModalVisible(false);
-      setSuccess('密码库已成功从文本导入');
-      message.success('密码库已成功从文本导入');
+      // 尝试导入并验证是否能用当前主密码解密
+      const importSuccess = await onImport(importText);
+      
+      if (importSuccess) {
+        setTextImportModalVisible(false);
+        setSuccess('密码库已成功从文本导入');
+        message.success('密码库已成功从文本导入');
+      } else {
+        throw new Error('导入失败，主密码与导入数据不匹配');
+      }
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
         message.error(err.message);
       } else {
-        setError('导入失败，请确保文本格式正确');
-        message.error('导入失败，请确保文本格式正确');
+        setError('导入失败，请确保文本格式正确且与当前主密码匹配');
+        message.error('导入失败，请确保文本格式正确且与当前主密码匹配');
       }
       console.error('文本导入错误:', err);
     } finally {
