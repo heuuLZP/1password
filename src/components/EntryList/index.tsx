@@ -166,13 +166,15 @@ const EntryList: React.FC<EntryListProps> = ({ vault, onVaultChange }) => {
         className={styles.groupTabs}
         tabBarExtraContent={
           <div className={styles.tabsActions}>
-            <Button 
-              type="primary" 
-              icon={<PlusOutlined />} 
-              onClick={handleAddNew}
-            >
-              添加新密码
-            </Button>
+            {vault.entries.length > 0 && (
+              <Button 
+                type="primary" 
+                icon={<PlusOutlined />} 
+                onClick={handleAddNew}
+              >
+                添加新密码
+              </Button>
+            )}
           </div>
         }
       >
