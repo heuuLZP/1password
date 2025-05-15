@@ -194,7 +194,6 @@ const PasswordEntryComponent: React.FC<PasswordEntryProps> = ({
   // 显示模式下的视图
   if (!isEditing) {
     const avatarBgColor = getRandomColor(entry.website);
-    console.log('⭐️  # avatarBgColor:', avatarBgColor);
     const websiteInitial = getInitial(entry.website);
     
     return (
