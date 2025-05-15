@@ -218,8 +218,8 @@ const EntryList: React.FC<EntryListProps> = ({ vault, onVaultChange }) => {
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Title level={4} style={{ margin: 0 }}>密码库</Title>
           <Text type="secondary" style={{ marginLeft: '8px' }}>
-            共 {filteredEntries.length} 条记录
-            {searchTerm && ` (已过滤: ${filteredEntries.length})`}
+            共 {vault.entries.length} 条记录
+            {searchTerm && ` (搜索结果: ${filteredEntries.length} 条)`}
           </Text>
         </div>
       </div>
