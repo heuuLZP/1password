@@ -5,11 +5,13 @@ import {
   CloudOutlined,
   TagsOutlined,
   MenuFoldOutlined,
-  MenuUnfoldOutlined
+  MenuUnfoldOutlined,
+  KeyOutlined
 } from '@ant-design/icons';
 import EntryList from '../EntryList';
 import ImportExport from '../ImportExport';
 import GroupManager from '../GroupManager';
+import ChangePassword from '../ChangePassword';
 import { PasswordVault } from '../../lib/types';
 import styles from './index.module.less';
 
@@ -22,6 +24,7 @@ interface DashboardProps {
   onVaultChange: (updatedVault: PasswordVault) => void;
   onImport: (encryptedDataStr: string) => Promise<boolean>;
   onLock: () => void;
+  onChangeMasterPassword: (oldPassword: string, newPassword: string) => Promise<boolean>;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({
@@ -29,7 +32,8 @@ const Dashboard: React.FC<DashboardProps> = ({
   encryptedData,
   onVaultChange,
   onImport,
-  onLock
+  onLock,
+  onChangeMasterPassword
 }) => {
   const [currentCategory, setCurrentCategory] = useState('passwords');
   const [collapsed, setCollapsed] = useState(false);
@@ -75,6 +79,12 @@ const Dashboard: React.FC<DashboardProps> = ({
           <ImportExport
             encryptedData={encryptedData}
             onImport={onImport}
+          />
+        );
+      case 'changePassword':
+        return (
+          <ChangePassword
+            onChangeMasterPassword={onChangeMasterPassword}
           />
         );
       default:
@@ -157,6 +167,11 @@ const Dashboard: React.FC<DashboardProps> = ({
                 key: 'backup',
                 icon: <CloudOutlined />,
                 label: '备份与恢复',
+              },
+              {
+                key: 'changePassword',
+                icon: <KeyOutlined />,
+                label: '修改主密码',
               },
             ]}
           />

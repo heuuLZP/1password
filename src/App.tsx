@@ -127,6 +127,38 @@ function App() {
     }
   };
   
+  // 修改主密码
+  const handleChangeMasterPassword = async (oldPassword: string, newPassword: string): Promise<boolean> => {
+    try {
+      // 验证旧密码是否正确
+      if (oldPassword !== state.masterPassword) {
+        throw new Error('当前密码不正确');
+      }
+      
+      if (!state.vault) {
+        throw new Error('密码库数据不存在');
+      }
+      
+      // 使用新密码重新加密整个密码库
+      const encryptedData = await storageManager.encryptVault(state.vault, newPassword);
+      
+      // 保存到本地存储
+      storageManager.saveToLocalStorage(encryptedData);
+      
+      // 更新状态
+      setState(prev => ({
+        ...prev,
+        masterPassword: newPassword,
+        encryptedData
+      }));
+      
+      return true; // 修改成功
+    } catch (error) {
+      console.error('修改主密码时出错:', error);
+      return false; // 修改失败
+    }
+  };
+  
   // 处理导入
   const handleImport = async (encryptedDataStr: string): Promise<boolean> => {
     try {
@@ -199,6 +231,7 @@ function App() {
       onVaultChange={handleVaultChange}
       onImport={handleImport}
       onLock={handleLock}
+      onChangeMasterPassword={handleChangeMasterPassword}
     />
   );
 }
