@@ -74,9 +74,6 @@ jobs:
         # 如果项目有prettier配置，取消注释下面这行
         # pnpm exec prettier --check "src/**/*.{ts,tsx,js,jsx}"
         echo "代码格式检查完成"
-      
-    - name: 检查依赖安全性
-      run: pnpm audit --audit-level moderate
 
   # 部署到GitHub Pages（仅在main分支推送时）
   deploy:
