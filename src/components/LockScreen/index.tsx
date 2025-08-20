@@ -1,11 +1,11 @@
-import React from 'react';
-import { Layout, Typography, Card, Divider, Badge, Avatar } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Layout, Typography, Card, Divider, Badge, Avatar, Modal, Button } from 'antd';
 import { LockOutlined, SafetyOutlined } from '@ant-design/icons';
 import MasterPasswordForm from '../MasterPasswordForm';
 import styles from './index.module.less';
 
 const { Content, Footer } = Layout;
-const { Title, Text } = Typography;
+const { Title, Text, Paragraph } = Typography;
 
 interface LockScreenProps {
   isNewUser: boolean;
@@ -13,6 +13,18 @@ interface LockScreenProps {
 }
 
 const LockScreen: React.FC<LockScreenProps> = ({ isNewUser, onMasterPasswordSubmit }) => {
+  const [isWelcomeVisible, setIsWelcomeVisible] = useState(false);
+
+  useEffect(() => {
+    if (isNewUser) {
+      setIsWelcomeVisible(true);
+    }
+  }, [isNewUser]);
+
+  const handleOk = () => {
+    setIsWelcomeVisible(false);
+  };
+
   return (
     <Layout className={styles.layout}>
       <Content className={styles.content}>
@@ -56,6 +68,29 @@ const LockScreen: React.FC<LockScreenProps> = ({ isNewUser, onMasterPasswordSubm
           您的密码安全，永不离线
         </div>
       </Footer>
+
+      <Modal
+        title={<Title level={4}>欢迎使用您的密码备忘录！</Title>}
+        open={isWelcomeVisible}
+        onOk={handleOk}
+        onCancel={handleOk}
+        footer={[
+          <Button key="submit" type="primary" onClick={handleOk}>
+            我明白了，开始使用
+          </Button>,
+        ]}
+      >
+        <Typography>
+          <Paragraph>这是一款完全在您本地运行的密码管理工具，您的数据绝对安全。</Paragraph>
+          <Divider />
+          <Title level={5}>核心三步指引：</Title>
+          <ol>
+            <li><Text strong>创建“私密钥匙”</Text>: 设置一个您能记住的强主密码。</li>
+            <li><Text strong>开始添加</Text>: 进入主界面后，点击“添加新密码”来保存您的第一个密码。</li>
+            <li><Text strong>随时锁定</Text>: 完成后，点击“锁定”按钮，数据会立刻加密，确保安全。</li>
+          </ol>
+        </Typography>
+      </Modal>
     </Layout>
   );
 };

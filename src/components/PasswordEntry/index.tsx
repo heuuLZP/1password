@@ -271,7 +271,7 @@ const PasswordEntryComponent: React.FC<PasswordEntryProps> = ({
                     onClick={() => setShowPassword(!showPassword)}
                   />
                 </Tooltip>
-                <Tooltip title={copied ? "已复制!" : "复制密码"}>
+                <Tooltip title={copied ? "已复制!" : "复制密码，30秒后清空粘贴板"}>
                   <Button 
                     type="text" 
                     size="small" 

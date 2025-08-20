@@ -6,12 +6,14 @@ import {
   TagsOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  KeyOutlined
+  KeyOutlined,
+  QuestionCircleOutlined
 } from '@ant-design/icons';
 import EntryList from '../EntryList';
 import ImportExport from '../ImportExport';
 import GroupManager from '../GroupManager';
 import ChangePassword from '../ChangePassword';
+import HelpGuide from '../HelpGuide';
 import { PasswordVault } from '../../lib/types';
 import styles from './index.module.less';
 
@@ -38,6 +40,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   const [currentCategory, setCurrentCategory] = useState('passwords');
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isHelpVisible, setIsHelpVisible] = useState(false);
 
   // 监听窗口大小变化，自动适应移动设备
   useEffect(() => {
@@ -113,6 +116,12 @@ const Dashboard: React.FC<DashboardProps> = ({
         </Space>
         
         <Space size="middle">
+          <Button
+            icon={<QuestionCircleOutlined />}
+            onClick={() => setIsHelpVisible(true)}
+          >
+            {!isMobile ? '帮助' : ''}
+          </Button>
           <Button 
             icon={<LockOutlined />} 
             onClick={onLock}
@@ -156,7 +165,7 @@ const Dashboard: React.FC<DashboardProps> = ({
               {
                 key: 'passwords',
                 icon: <LockOutlined />,
-                label: '密码',
+                label: '密码管理',
               },
               {
                 key: 'groups',
@@ -197,6 +206,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           </Footer>
         </Layout>
       </Layout>
+      <HelpGuide visible={isHelpVisible} onClose={() => setIsHelpVisible(false)} isMobile={isMobile} />
     </Layout>
   );
 };
