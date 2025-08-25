@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Typography, Card, Divider, Badge, Avatar, Modal, Button } from 'antd';
-import { LockOutlined, SafetyOutlined } from '@ant-design/icons';
+import { Layout, Typography, Card, Divider, Badge, Avatar, Modal, Button, Alert, Space, Tooltip } from 'antd';
+import { LockOutlined, SafetyOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import MasterPasswordForm from '../MasterPasswordForm';
 import styles from './index.module.less';
 
@@ -14,14 +14,19 @@ interface LockScreenProps {
 
 const LockScreen: React.FC<LockScreenProps> = ({ isNewUser, onMasterPasswordSubmit }) => {
   const [isWelcomeVisible, setIsWelcomeVisible] = useState(false);
+  const [adBlockerDetected, setAdBlockerDetected] = useState(false);
 
+  // Detect ad blocker on mount
   useEffect(() => {
-    if (isNewUser) {
-      setIsWelcomeVisible(true);
-    }
-  }, [isNewUser]);
+    const checkAdBlocker = () => {
+      if (window.adBlockerDetected) {
+        setAdBlockerDetected(true);
+      }
+    };
+    checkAdBlocker();
+  }, []);
 
-  const handleOk = () => {
+  const handleWelcomeOk = () => {
     setIsWelcomeVisible(false);
   };
 
@@ -44,9 +49,20 @@ const LockScreen: React.FC<LockScreenProps> = ({ isNewUser, onMasterPasswordSubm
                 className={styles.badgeWrapper}
               />
             </div>
-            <Title level={2} className="text-primary" style={{ margin: '8px 0' }}>
-              密码备忘录
-            </Title>
+            <Space align="center" className={styles.titleContainer}>
+              <Title level={2} className="text-primary" style={{ margin: 0 }}>
+                密码备忘录
+              </Title>
+              {isNewUser && (
+                <Tooltip title="查看使用指引">
+                  <Button 
+                    type="link"
+                    icon={<QuestionCircleOutlined style={{ fontSize: '24px' }}/>}
+                    onClick={() => setIsWelcomeVisible(true)}
+                  />
+                </Tooltip>
+              )}
+            </Space>
             <Text style={{ textAlign: 'center', fontSize: '15px' }}>
               安全存储您的所有密码和敏感信息
             </Text>
@@ -57,6 +73,17 @@ const LockScreen: React.FC<LockScreenProps> = ({ isNewUser, onMasterPasswordSubm
             isNewUser={isNewUser}
             onSubmit={onMasterPasswordSubmit}
           />
+          {adBlockerDetected && (
+            <Alert
+              message="检测到广告拦截器"
+              description="我们注意到您可能开启了广告拦截扩展，这会导致统计功能失效。如果您觉得本工具对您有帮助，希望可以将其添加到白名单中，感谢您的支持！"
+              type="warning"
+              showIcon
+              closable
+              onClose={() => setAdBlockerDetected(false)}
+              className={styles.alertBanner}
+            />
+          )}
         </Card>
       </Content>
       
@@ -72,16 +99,17 @@ const LockScreen: React.FC<LockScreenProps> = ({ isNewUser, onMasterPasswordSubm
       <Modal
         title={<Title level={4}>欢迎使用您的密码备忘录！</Title>}
         open={isWelcomeVisible}
-        onOk={handleOk}
-        onCancel={handleOk}
+        onOk={handleWelcomeOk}
+        onCancel={handleWelcomeOk}
         footer={[
-          <Button key="submit" type="primary" onClick={handleOk}>
+          <Button key="submit" type="primary" onClick={handleWelcomeOk}>
             我明白了，开始使用
           </Button>,
         ]}
       >
         <Typography>
-          <Paragraph>这是一款完全在您本地运行的密码管理工具，您的数据绝对安全。</Paragraph>
+          <Paragraph>这是一款在您本地运行的密码管理工具，您的数据绝对安全。</Paragraph>
+          <Paragraph>google analytics 仅统计访问量，不会收集您的个人信息或密码。</Paragraph>
           <Divider />
           <Title level={5}>核心三步指引：</Title>
           <ol>

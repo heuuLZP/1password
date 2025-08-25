@@ -5,6 +5,13 @@ import { AppState, PasswordVault } from './lib/types';
 import { StorageManager } from './lib/storage';
 import './App.module.less';
 
+// 声明全局变量
+declare global {
+  interface Window {
+    adBlockerDetected?: boolean;
+  }
+}
+
 function App() {
   const [state, setState] = useState<AppState>({
     vault: null,

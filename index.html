@@ -48,19 +48,33 @@
   }
   </script>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BTSMFXRXP9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-
-  gtag('config', 'G-BTSMFXRXP9');
-</script>
 
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
+  <script>
+    (function() {
+      const script = document.createElement('script');
+      script.src = 'https://www.googletagmanagersss.com/gtag/js?id=G-BTSMFXRXP9';
+      script.async = true;
+
+      script.onload = function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BTSMFXRXP9');
+        console.log('Google Analytics loaded successfully.');
+      };
+
+      script.onerror = function() {
+        console.error('Google Analytics failed to load. Ad blocker likely.');
+        // Set a global flag and dispatch the event
+        window.adBlockerDetected = true;
+      };
+
+      document.head.appendChild(script);
+    })();
+  </script>
 </body>
 
 </html>
