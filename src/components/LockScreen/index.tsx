@@ -54,13 +54,15 @@ const LockScreen: React.FC<LockScreenProps> = ({ isNewUser, onMasterPasswordSubm
                 密码备忘录
               </Title>
               {isNewUser && (
-                <Tooltip title="查看使用指引">
-                  <Button 
-                    type="link"
-                    icon={<QuestionCircleOutlined style={{ fontSize: '24px' }}/>}
-                    onClick={() => setIsWelcomeVisible(true)}
-                  />
-                </Tooltip>
+                <div className="shake-element">
+                  <Tooltip title="查看使用指引">
+                    <Button 
+                      type="link"
+                      icon={<QuestionCircleOutlined style={{ fontSize: '24px' }}/>}
+                      onClick={() => setIsWelcomeVisible(true)}
+                    />
+                  </Tooltip>
+                </div>
               )}
             </Space>
             <Text style={{ textAlign: 'center', fontSize: '15px' }}>

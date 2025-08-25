@@ -80,3 +80,30 @@ body {
 .ant-alert {
   border-radius: 8px;
 }
+/* 抖动动画关键帧 */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+/* 应用抖动动画的元素 */
+.shake-element {
+  display: inline-block;
+  /* 应用动画，无限循环，每次持续1秒 */
+  animation: shake 1s 10;
+}
